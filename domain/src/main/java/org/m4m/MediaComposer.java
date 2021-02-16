@@ -386,17 +386,16 @@ public class MediaComposer implements Serializable {
                 } catch (Exception e) {
                     try {
                         pipeline.release();
-                        notifyOnError(e);
-                    } catch (IOException e1) {
-                        notifyOnError(e);
-                        notifyOnError(e1);
+                    } catch (Exception e1) {
+                     // Do nothing. Do not notify.
                     }
+                    notifyOnError(e);
                     return;
                 }
 
                 try {
                     pipeline.release();
-                } catch (IOException e) {
+                } catch (Exception e) {
                     notifyOnError(e);
                     return;
                 }
